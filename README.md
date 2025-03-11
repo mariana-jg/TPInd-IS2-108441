@@ -9,6 +9,12 @@
 ### Pre-requisitos
 ### User-guides
 ### Cómo construir la imagen de Docker.
+
+  ´´´ docker build -t [NOMBRE]´´´
+  ´´´ docker run -p 8080:8080 [NOMBRE]´´´ 
+
+  Hasta setear variables de entorno.
+
 ### Cómo correr la base de datos.
 ### Como correr la imagen del servicio.
 

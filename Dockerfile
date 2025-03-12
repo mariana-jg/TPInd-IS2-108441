@@ -4,6 +4,7 @@ FROM golang:1.24 AS build
 WORKDIR /src
 COPY . .  
 
+RUN go fmt
 RUN go mod tidy
 RUN go build -o main .
 

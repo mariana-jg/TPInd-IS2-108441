@@ -45,3 +45,41 @@ func TestNewCourse(t *testing.T) {
 	r.ServeHTTP(w, req)
 	assert.Equal(t, http.StatusCreated, w.Code)
 }
+
+func TestGetCoursesHandler(t *testing.T) {
+	r := SetUpRouter()
+	r.GET("/courses", GetCoursesHandler)
+	req, _ := http.NewRequest("GET", "/courses", nil)
+	w := httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+
+	var companies []Course
+	json.Unmarshal(w.Body.Bytes(), &companies)
+
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.NotEmpty(t, companies)
+}
+
+func TestGetCourseHandler(t *testing.T) {
+	r := SetUpRouter()
+	r.GET("/courses/:id", GetCourseHandler)
+	req, _ := http.NewRequest("GET", "/courses/1", nil)
+	w := httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+
+	var course Course
+	json.Unmarshal(w.Body.Bytes(), &course)
+
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.NotEmpty(t, course)
+}
+
+func TestDeleteCourseHandler(t *testing.T) {
+	r := SetUpRouter()
+	r.DELETE("/courses/:id", DeleteCourseHandler)
+	req, _ := http.NewRequest("DELETE", "/courses/1", nil)
+	w := httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+
+	assert.Equal(t, http.StatusOK, w.Code)
+}

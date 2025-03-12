@@ -24,12 +24,12 @@ func main() {
 	courseRepository := repositories.NewCourseRepository()
 	courseService := services.NewCoursesService(*courseRepository)
 	courseHandler := handlers.NewCourseHandler(*courseService)
-	router.Group("/courses")
+	courses := router.Group("/courses")
 	{
-		router.GET("", courseHandler.GetCoursesHandler)
-		router.GET("/:id", courseHandler.GetCourseHandler)
-		router.POST("", courseHandler.CreateCourseHandler)
-		router.DELETE("/:id", courseHandler.DeleteCourseHandler)
+		courses.GET("", courseHandler.GetCoursesHandler)
+		courses.GET("/:id", courseHandler.GetCourseHandler)
+		courses.POST("", courseHandler.CreateCourseHandler)
+		courses.DELETE("/:id", courseHandler.DeleteCourseHandler)
 	}
 	router.Run(":8080")
 }

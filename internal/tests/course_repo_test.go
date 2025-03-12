@@ -5,9 +5,9 @@ import (
 	"testing"
 )
 
-// We have charged the repository with two courses, so we expect to get two courses always
+// We have charged the repository with two courses, so that's where we start.
 
-func TestGetCourses(t *testing.T) {
+func TestGetCoursesRepository(t *testing.T) {
 	repo := repositories.NewCourseRepository()
 	courses := repo.GetCourses()
 	if len(courses) != 2 {
@@ -15,7 +15,7 @@ func TestGetCourses(t *testing.T) {
 	}
 }
 
-func TestGetCourse(t *testing.T) {
+func TestGetCourseRepository(t *testing.T) {
 	repo := repositories.NewCourseRepository()
 	course, _ := repo.GetCourse(1)
 	if course.ID != 1 {
@@ -23,7 +23,7 @@ func TestGetCourse(t *testing.T) {
 	}
 }
 
-func TestCreateCourse(t *testing.T) {
+func TestCreateCourseRepository(t *testing.T) {
 	repo := repositories.NewCourseRepository()
 	course := repo.GetCourses()[0]
 	repo.CreateCourse(course)
@@ -33,7 +33,7 @@ func TestCreateCourse(t *testing.T) {
 	}
 }
 
-func TestDeleteCourse(t *testing.T) {
+func TestDeleteCourseRepository(t *testing.T) {
 	repo := repositories.NewCourseRepository()
 	repo.DeleteCourse(1)
 	courses := repo.GetCourses()

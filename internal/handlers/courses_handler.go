@@ -48,7 +48,7 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 
 func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 	courses := h.CourseService.GetCourses()
-	c.JSON(http.StatusNoContent, courses)
+	c.JSON(http.StatusOK, courses)
 }
 
 func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {

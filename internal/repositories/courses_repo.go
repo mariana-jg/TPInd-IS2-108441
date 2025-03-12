@@ -36,9 +36,10 @@ func (r *CourseRepository) GetCourse(id int) (models.Course, error) {
 	return models.Course{}, nil
 }
 
-func (r *CourseRepository) CreateCourse(course models.Course) error {
+func (r *CourseRepository) CreateCourse(course models.Course) (models.Course, error) {
+	course.ID = len(r.courses) + 1
 	r.courses = append(r.courses, course)
-	return nil
+	return course, nil
 }
 
 func (r *CourseRepository) DeleteCourse(id int) error {

@@ -57,6 +57,11 @@ func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request error"})
 		return
 	}
-	createdCourse := h.CourseService.CreateCourse(course)
+	createdCourse, err := h.CourseService.CreateCourse(course)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create course"})
+		return
+	}
+
 	c.JSON(http.StatusCreated, createdCourse)
 }

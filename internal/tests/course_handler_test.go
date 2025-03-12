@@ -62,3 +62,37 @@ func TestCreateCourseHandler(t *testing.T) {
 	assert.Equal(t, "Software Engineering II", createdCourse.Title)
 	assert.Equal(t, "Learn how to create your own API REST", createdCourse.Description)
 }
+
+func TestGetCourseHandler(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+	repo := repositories.NewCourseRepository()
+	service := services.NewCoursesService(*repo)
+	handler := handlers.NewCourseHandler(*service)
+
+	router := gin.Default()
+	router.GET("/courses/:id", handler.GetCourseHandler)
+
+	req, _ := http.NewRequest("GET", "/courses/1", nil)
+	w := httptest.NewRecorder()
+
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+func TestDeleteCourseHandler(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+	repo := repositories.NewCourseRepository()
+	service := services.NewCoursesService(*repo)
+	handler := handlers.NewCourseHandler(*service)
+
+	router := gin.Default()
+	router.DELETE("/courses/:id", handler.DeleteCourseHandler)
+
+	req, _ := http.NewRequest("DELETE", "/courses/1", nil)
+	w := httptest.NewRecorder()
+
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, http.StatusNoContent, w.Code)
+}

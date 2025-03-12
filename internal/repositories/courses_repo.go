@@ -2,25 +2,24 @@ package repositories
 
 import "apirest-is2/internal/models"
 
-var courses = []models.Course{
-	{
-		ID:          1,
-		Title:       "Course #1",
-		Description: "Description 1",
-	},
-	{
-		ID:          2,
-		Title:       "Course #2",
-		Description: "Description 2",
-	},
-}
-
 type CourseRepository struct {
 	courses []models.Course
 }
 
 func NewCourseRepository() *CourseRepository {
-	return &CourseRepository{courses}
+	return &CourseRepository{courses: []models.Course{
+		{
+			ID:          1,
+			Title:       "Course #1",
+			Description: "Description 1",
+		},
+		{
+			ID:          2,
+			Title:       "Course #2",
+			Description: "Description 2",
+		},
+	},
+	}
 }
 
 func (r *CourseRepository) GetCourses() []models.Course {

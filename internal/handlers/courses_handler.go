@@ -59,19 +59,27 @@ func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 	var course models.Course
 
 	if err := c.ShouldBindJSON(&course); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error":   "Bad request error",
-			"message": "Error on JSON structure",
-		})
+		error := models.RFCError{
+			Type:     "about:blank",
+			Title:    "Bad request error",
+			Status:   http.StatusBadRequest,
+			Detail:   "Error on JSON structure",
+			Instance: c.Request.URL.Path,
+		}
+		c.JSON(http.StatusBadRequest, error)
 		return
 	}
 
 	createdCourse, err := h.CourseService.CreateCourse(course)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error":   "Status internal server error",
-			"message": err.Error(),
-		})
+		error := models.RFCError{
+			Type:     "about:blank",
+			Title:    "Internal server error",
+			Status:   http.StatusInternalServerError,
+			Detail:   err.Error(),
+			Instance: c.Request.URL.Path,
+		}
+		c.JSON(http.StatusInternalServerError, error)
 		return
 	}
 

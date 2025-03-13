@@ -20,28 +20,56 @@ func NewCourseHandler(service services.CoursesService) *CourseHandler {
 func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 	if error != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Course not found"})
+		error := models.RFCError{
+			Type:     "about:blank",
+			Title:    "Invalid ID",
+			Status:   http.StatusBadRequest,
+			Detail:   "The provided course ID is not a valid number.",
+			Instance: c.Request.URL.Path,
+		}
+		c.JSON(http.StatusBadRequest, error)
+		return
 	}
 
 	if h.CourseService.DeleteCourse(id) != nil {
+		// i have to create an error that identifies not found course
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "Internal server error"})
 		return
 	}
 
-	c.JSON(http.StatusNoContent, gin.H{"message": "Course deleted successfully"})
+	c.JSON(http.StatusNoContent, nil)
 
 }
 
 func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
+
 	if error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Course not found"})
-	}
-	course, err := h.CourseService.GetCourse(id)
-	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Course not found"})
+		error := models.RFCError{
+			Type:     "about:blank",
+			Title:    "Bad request error",
+			Status:   http.StatusBadRequest,
+			Detail:   "Invalid ID",
+			Instance: c.Request.URL.Path,
+		}
+		c.JSON(http.StatusBadRequest, error)
 		return
 	}
+
+	course, err := h.CourseService.GetCourse(id)
+	if err != nil {
+		// i have to create an error that identifies not found course
+		error := models.RFCError{
+			Type:     "about:blank",
+			Title:    "Internal server error",
+			Status:   http.StatusInternalServerError,
+			Detail:   err.Error(),
+			Instance: c.Request.URL.Path,
+		}
+		c.JSON(http.StatusInternalServerError, error)
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"data": course,
 	})

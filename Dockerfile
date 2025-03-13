@@ -15,6 +15,7 @@ FROM gcr.io/distroless/base-debian12 AS final
 
 WORKDIR /root/
 COPY --from=builder /app/main /root/main
+COPY .env .env
 
 CMD ["/root/main"]
 

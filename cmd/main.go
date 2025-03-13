@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 
 	"apirest-is2/internal/handlers"
@@ -13,12 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
-
-func WelcomeHandler(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Welcome to the API",
-	})
-}
 
 func main() {
 
@@ -42,7 +35,6 @@ func main() {
 		port = "8080"
 	}
 
-	fmt.Println("Starting API with configuration:")
 	fmt.Println("- ENVIRONMENT:", env)
 	fmt.Println("- HOST:", host)
 	fmt.Println("- PORT:", port)

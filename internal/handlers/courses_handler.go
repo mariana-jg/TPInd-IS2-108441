@@ -53,15 +53,25 @@ func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 
 func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 	var course models.Course
+
 	if err := c.ShouldBindJSON(&course); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request error"})
-		return
-	}
-	createdCourse, err := h.CourseService.CreateCourse(course)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create course"})
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error":   "Bad request error",
+			"message": "Error on JSON structure",
+		})
 		return
 	}
 
-	c.JSON(http.StatusCreated, createdCourse)
+	createdCourse, err := h.CourseService.CreateCourse(course)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error":   "Status internal server error",
+			"message": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{
+		"data": createdCourse,
+	})
 }

@@ -42,13 +42,17 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Course not found"})
 		return
 	}
-	c.JSON(http.StatusOK, course)
+	c.JSON(http.StatusOK, gin.H{
+		"data": course,
+	})
 
 }
 
 func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 	courses := h.CourseService.GetCourses()
-	c.JSON(http.StatusOK, courses)
+	c.JSON(http.StatusOK, gin.H{
+		"data": courses,
+	})
 }
 
 func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {

@@ -30,7 +30,7 @@ func TestGetCoursesHandler(t *testing.T) {
 
 	router.ServeHTTP(w, req)
 
-	assert.Equal(t, http.StatusNoContent, w.Code)
+	assert.Equal(t, http.StatusOK, w.Code)
 }
 
 func TestCreateCourseHandler(t *testing.T) {
@@ -56,8 +56,12 @@ func TestCreateCourseHandler(t *testing.T) {
 
 	assert.Equal(t, http.StatusCreated, w.Code)
 
-	var createdCourse models.Course
-	json.Unmarshal(w.Body.Bytes(), &createdCourse)
+	var response map[string]models.Course
+	err := json.Unmarshal(w.Body.Bytes(), &response)
+	assert.NoError(t, err)
+
+	createdCourse, exists := response["data"]
+	assert.True(t, exists, "Expected response to contain 'data' key")
 
 	assert.Equal(t, "Software Engineering II", createdCourse.Title)
 	assert.Equal(t, "Learn how to create your own API REST", createdCourse.Description)

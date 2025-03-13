@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"apirest-is2/internal/handlers"
 	"apirest-is2/internal/repositories"
 	"apirest-is2/internal/services"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func WelcomeHandler(c *gin.Context) {
@@ -18,7 +21,32 @@ func WelcomeHandler(c *gin.Context) {
 }
 
 func main() {
-	fmt.Println("Starting...")
+
+	error := godotenv.Load()
+	if error != nil {
+		log.Println("Error on .env file")
+	}
+
+	env := os.Getenv("ENVIROMENT")
+	if env == "" {
+		env = "development"
+	}
+
+	host := os.Getenv("HOST")
+	if host == "" {
+		host = "0.0.0.0"
+	}
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Println("Starting API with configuration:")
+	fmt.Println("- ENVIRONMENT:", env)
+	fmt.Println("- HOST:", host)
+	fmt.Println("- PORT:", port)
+
 	router := gin.Default()
 
 	courseRepository := repositories.NewCourseRepository()
@@ -31,5 +59,5 @@ func main() {
 		courses.POST("", courseHandler.CreateCourseHandler)
 		courses.DELETE("/:id", courseHandler.DeleteCourseHandler)
 	}
-	router.Run(":8080")
+	router.Run(host + ":" + port)
 }

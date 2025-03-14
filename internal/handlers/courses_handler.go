@@ -20,20 +20,39 @@ func NewCourseHandler(service services.CoursesService) *CourseHandler {
 func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 	if error != nil {
-		error := models.RFCError{
+		errorResponse := models.RFCError{
 			Type:     "about:blank",
 			Title:    "Invalid ID",
 			Status:   http.StatusBadRequest,
 			Detail:   "The provided course ID is not a valid number.",
 			Instance: c.Request.URL.Path,
 		}
-		c.JSON(http.StatusBadRequest, error)
+		c.JSON(http.StatusBadRequest, errorResponse)
 		return
 	}
 
-	if h.CourseService.DeleteCourse(id) != nil {
-		// i have to create an error that identifies not found course
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "Internal server error"})
+	error = h.CourseService.DeleteCourse(id)
+	if error != nil {
+		if _, ok := error.(*services.CourseNotFoundError); ok {
+			errorResponse := models.RFCError{
+				Type:     "about:blank",
+				Title:    "Not Found",
+				Status:   http.StatusNotFound,
+				Detail:   "The course with the specified ID was not found.",
+				Instance: c.Request.URL.Path,
+			}
+			c.JSON(http.StatusNotFound, errorResponse)
+			return
+		}
+
+		errorResponse := models.RFCError{
+			Type:     "about:blank",
+			Title:    "Internal server error",
+			Status:   http.StatusInternalServerError,
+			Detail:   error.Error(),
+			Instance: c.Request.URL.Path,
+		}
+		c.JSON(http.StatusInternalServerError, errorResponse)
 		return
 	}
 
@@ -45,28 +64,39 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 
 	if error != nil {
-		error := models.RFCError{
+		errorResponse := models.RFCError{
 			Type:     "about:blank",
 			Title:    "Bad request error",
 			Status:   http.StatusBadRequest,
 			Detail:   "Invalid ID",
 			Instance: c.Request.URL.Path,
 		}
-		c.JSON(http.StatusBadRequest, error)
+		c.JSON(http.StatusBadRequest, errorResponse)
 		return
 	}
 
-	course, err := h.CourseService.GetCourse(id)
-	if err != nil {
-		// i have to create an error that identifies not found course
-		error := models.RFCError{
+	course, error := h.CourseService.GetCourse(id)
+	if error != nil {
+		if _, ok := error.(*services.CourseNotFoundError); ok {
+			errorResponse := models.RFCError{
+				Type:     "about:blank",
+				Title:    "Not Found",
+				Status:   http.StatusNotFound,
+				Detail:   "The course with the specified ID was not found.",
+				Instance: c.Request.URL.Path,
+			}
+			c.JSON(http.StatusNotFound, errorResponse)
+			return
+		}
+
+		errorResponse := models.RFCError{
 			Type:     "about:blank",
 			Title:    "Internal server error",
 			Status:   http.StatusInternalServerError,
-			Detail:   err.Error(),
+			Detail:   error.Error(),
 			Instance: c.Request.URL.Path,
 		}
-		c.JSON(http.StatusInternalServerError, error)
+		c.JSON(http.StatusInternalServerError, errorResponse)
 		return
 	}
 
@@ -86,28 +116,28 @@ func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 	var course models.Course
 
-	if err := c.ShouldBindJSON(&course); err != nil {
-		error := models.RFCError{
+	if error := c.ShouldBindJSON(&course); error != nil {
+		errorResponse := models.RFCError{
 			Type:     "about:blank",
 			Title:    "Bad request error",
 			Status:   http.StatusBadRequest,
 			Detail:   "Error on JSON structure",
 			Instance: c.Request.URL.Path,
 		}
-		c.JSON(http.StatusBadRequest, error)
+		c.JSON(http.StatusBadRequest, errorResponse)
 		return
 	}
 
-	createdCourse, err := h.CourseService.CreateCourse(course)
-	if err != nil {
-		error := models.RFCError{
+	createdCourse, error := h.CourseService.CreateCourse(course)
+	if error != nil {
+		errorResponse := models.RFCError{
 			Type:     "about:blank",
 			Title:    "Internal server error",
 			Status:   http.StatusInternalServerError,
-			Detail:   err.Error(),
+			Detail:   error.Error(),
 			Instance: c.Request.URL.Path,
 		}
-		c.JSON(http.StatusInternalServerError, error)
+		c.JSON(http.StatusInternalServerError, errorResponse)
 		return
 	}
 

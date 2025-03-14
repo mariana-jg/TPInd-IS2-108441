@@ -1,10 +1,15 @@
 package repositories
 
-import "apirest-is2/internal/models"
+import (
+	"apirest-is2/internal/models"
+	"errors"
+)
 
 type CourseRepository struct {
 	courses []models.Course
 }
+
+var ErrCourseNotFound = errors.New("course not found")
 
 func NewCourseRepository() *CourseRepository {
 	return &CourseRepository{courses: []models.Course{
@@ -32,7 +37,7 @@ func (r *CourseRepository) GetCourse(id int) (models.Course, error) {
 			return course, nil
 		}
 	}
-	return models.Course{}, nil
+	return models.Course{}, ErrCourseNotFound
 }
 
 func (r *CourseRepository) CreateCourse(course models.Course) (models.Course, error) {
@@ -48,5 +53,5 @@ func (r *CourseRepository) DeleteCourse(id int) error {
 			return nil
 		}
 	}
-	return nil
+	return ErrCourseNotFound
 }

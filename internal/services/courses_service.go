@@ -19,7 +19,11 @@ func (s *CoursesService) GetCourses() []models.Course {
 }
 
 func (s *CoursesService) GetCourse(id int) (models.Course, error) {
-	return s.repository.GetCourse(id)
+	course, error := s.repository.GetCourse(id)
+	if error != nil {
+		return models.Course{}, &CourseNotFoundError{ID: id}
+	}
+	return course, nil
 }
 
 func (s *CoursesService) CreateCourse(course models.Course) (models.Course, error) {
@@ -36,5 +40,9 @@ func (s *CoursesService) CreateCourse(course models.Course) (models.Course, erro
 }
 
 func (s *CoursesService) DeleteCourse(id int) error {
-	return s.repository.DeleteCourse(id)
+	err := s.repository.DeleteCourse(id)
+	if err != nil {
+		return &CourseNotFoundError{ID: id}
+	}
+	return nil
 }

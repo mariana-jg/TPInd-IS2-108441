@@ -13,6 +13,16 @@ type CourseHandler struct {
 	CourseService services.CoursesService
 }
 
+func errorResponseCreator(status int, title string, detail string, instance string) models.RFCError {
+	return models.RFCError{
+		Type:     "about:blank",
+		Title:    title,
+		Status:   status,
+		Detail:   detail,
+		Instance: instance,
+	}
+}
+
 func NewCourseHandler(service services.CoursesService) *CourseHandler {
 	return &CourseHandler{CourseService: service}
 }
@@ -20,13 +30,8 @@ func NewCourseHandler(service services.CoursesService) *CourseHandler {
 func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 	if error != nil {
-		errorResponse := models.RFCError{
-			Type:     "about:blank",
-			Title:    "Invalid ID",
-			Status:   http.StatusBadRequest,
-			Detail:   "The provided course ID is not a valid number.",
-			Instance: c.Request.URL.Path,
-		}
+		errorResponse := errorResponseCreator(http.StatusBadRequest,
+			"Invalid ID", "ID is not a valid number", c.Request.URL.Path)
 		c.JSON(http.StatusBadRequest, errorResponse)
 		return
 	}
@@ -34,24 +39,14 @@ func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 	error = h.CourseService.DeleteCourse(id)
 	if error != nil {
 		if _, ok := error.(*services.CourseNotFoundError); ok {
-			errorResponse := models.RFCError{
-				Type:     "about:blank",
-				Title:    "Not Found",
-				Status:   http.StatusNotFound,
-				Detail:   "The course with the specified ID was not found.",
-				Instance: c.Request.URL.Path,
-			}
+			errorResponse := errorResponseCreator(http.StatusNotFound,
+				"Course not found", "A course with the specified ID was not found.",
+				c.Request.URL.Path)
 			c.JSON(http.StatusNotFound, errorResponse)
 			return
 		}
-
-		errorResponse := models.RFCError{
-			Type:     "about:blank",
-			Title:    "Internal server error",
-			Status:   http.StatusInternalServerError,
-			Detail:   error.Error(),
-			Instance: c.Request.URL.Path,
-		}
+		errorResponse := errorResponseCreator(http.StatusInternalServerError,
+			"Internal server error", error.Error(), c.Request.URL.Path)
 		c.JSON(http.StatusInternalServerError, errorResponse)
 		return
 	}
@@ -64,13 +59,8 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 
 	if error != nil {
-		errorResponse := models.RFCError{
-			Type:     "about:blank",
-			Title:    "Bad request error",
-			Status:   http.StatusBadRequest,
-			Detail:   "Invalid ID",
-			Instance: c.Request.URL.Path,
-		}
+		errorResponse := errorResponseCreator(http.StatusBadRequest,
+			"Invalid ID", "ID is not a valid number", c.Request.URL.Path)
 		c.JSON(http.StatusBadRequest, errorResponse)
 		return
 	}
@@ -78,24 +68,15 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 	course, error := h.CourseService.GetCourse(id)
 	if error != nil {
 		if _, ok := error.(*services.CourseNotFoundError); ok {
-			errorResponse := models.RFCError{
-				Type:     "about:blank",
-				Title:    "Not Found",
-				Status:   http.StatusNotFound,
-				Detail:   "The course with the specified ID was not found.",
-				Instance: c.Request.URL.Path,
-			}
+			errorResponse := errorResponseCreator(http.StatusNotFound,
+				"Course not found", "A course with the specified ID was not found.",
+				c.Request.URL.Path)
 			c.JSON(http.StatusNotFound, errorResponse)
 			return
 		}
 
-		errorResponse := models.RFCError{
-			Type:     "about:blank",
-			Title:    "Internal server error",
-			Status:   http.StatusInternalServerError,
-			Detail:   error.Error(),
-			Instance: c.Request.URL.Path,
-		}
+		errorResponse := errorResponseCreator(http.StatusInternalServerError,
+			"Internal server error", error.Error(), c.Request.URL.Path)
 		c.JSON(http.StatusInternalServerError, errorResponse)
 		return
 	}
@@ -117,26 +98,16 @@ func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 	var course models.Course
 
 	if error := c.ShouldBindJSON(&course); error != nil {
-		errorResponse := models.RFCError{
-			Type:     "about:blank",
-			Title:    "Bad request error",
-			Status:   http.StatusBadRequest,
-			Detail:   "Error on JSON structure",
-			Instance: c.Request.URL.Path,
-		}
+		errorResponse := errorResponseCreator(http.StatusBadRequest,
+			"Bad request error", "Error on JSON structure", c.Request.URL.Path)
 		c.JSON(http.StatusBadRequest, errorResponse)
 		return
 	}
 
 	createdCourse, error := h.CourseService.CreateCourse(course)
 	if error != nil {
-		errorResponse := models.RFCError{
-			Type:     "about:blank",
-			Title:    "Internal server error",
-			Status:   http.StatusInternalServerError,
-			Detail:   error.Error(),
-			Instance: c.Request.URL.Path,
-		}
+		errorResponse := errorResponseCreator(http.StatusInternalServerError,
+			"Internal server error", error.Error(), c.Request.URL.Path)
 		c.JSON(http.StatusInternalServerError, errorResponse)
 		return
 	}

@@ -7,13 +7,3 @@ type RFCError struct {
 	Detail   string `json:"detail"`
 	Instance string `json:"instance"`
 }
-
-func errorResponseCreator(status int, title string, detail string, instance string) RFCError {
-	return RFCError{
-		Type:     "about:blank",
-		Title:    title,
-		Status:   status,
-		Detail:   detail,
-		Instance: instance,
-	}
-}

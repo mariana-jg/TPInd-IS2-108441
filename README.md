@@ -12,7 +12,7 @@
 
   ```docker build -t [NOMBRE] .```
   
-  ```docker run --rm -p 8080:8080     -e ENVIRONMENT=production     -e HOST=0.0.0.0     -e PORT=8080     [NOMBRE]```
+  ```docker run --rm   -p 8080:8080   -e ENVIRONMENT=production   -e HOST=0.0.0.0   -e PORT=8080   -v $(pwd)/logs:/root/logs   [NOMBRE]```
 
   Hasta setear variables de entorno.
 

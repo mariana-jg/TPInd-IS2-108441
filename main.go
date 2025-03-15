@@ -8,6 +8,7 @@ import (
 	"apirest-is2/internal/handlers"
 	"apirest-is2/internal/repositories"
 	"apirest-is2/internal/services"
+	"apirest-is2/logger"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -38,6 +39,8 @@ func main() {
 	fmt.Println("- ENVIRONMENT:", env)
 	fmt.Println("- HOST:", host)
 	fmt.Println("- PORT:", port)
+
+	logger.InitLogger()
 
 	router := gin.Default()
 

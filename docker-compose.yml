@@ -20,16 +20,9 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_USER: myuser
-      DATABASE_PASSWORD: mypassword
-      DATABASE_HOST: db
-      DATABASE_PORT: 5432
-      DATABASE_NAME: apirest_is2
-      ENVIRONMENT: production
-      HOST: 0.0.0.0
-      PORT: 8080
+      - .env
     ports:
-      - "8080:8080"
+      - "${PORT}:${PORT}"
     volumes:
       - ./logs:/root/logs
 

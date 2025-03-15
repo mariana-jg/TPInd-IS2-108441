@@ -13,8 +13,11 @@
   ```docker build -t [NOMBRE] .```
   
   ```docker run --rm   -p 8080:8080   -e ENVIRONMENT=production   -e HOST=0.0.0.0   -e PORT=8080   -v $(pwd)/logs:/root/logs   [NOMBRE]```
+  Con docker compose
 
-  Hasta setear variables de entorno.
+  ```docker-compose up --build -d```
+  ```docker-compose down -v```
+  ```docker logs -f api-container```
 
 ### Cómo correr la base de datos.
 ### Como correr la imagen del servicio.

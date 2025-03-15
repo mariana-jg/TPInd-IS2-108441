@@ -164,7 +164,26 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 }
 
 func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
-	courses := h.CourseService.GetCourses()
+	courses, error := h.CourseService.GetCourses()
+
+	if error != nil {
+
+		h.Logger.WithFields(logrus.Fields{
+			"method": "GET",
+			"status": http.StatusInternalServerError,
+			"error":  error.Error(),
+			"path":   c.Request.URL.Path,
+		}).Error("Internal Server Error")
+
+		errorResponse := models.NewRFCError(
+			http.StatusInternalServerError,
+			"Internal server error",
+			error.Error(),
+			c.Request.URL.Path,
+		)
+		c.IndentedJSON(http.StatusInternalServerError, errorResponse)
+		return
+	}
 
 	h.Logger.WithFields(logrus.Fields{
 		"method": "GET",

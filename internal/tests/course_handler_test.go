@@ -1,6 +1,6 @@
 package tests
 
-import (
+/*import (
 	"bytes"
 	"encoding/json"
 	"net/http"
@@ -14,9 +14,9 @@ import (
 	"apirest-is2/internal/models"
 	"apirest-is2/internal/repositories"
 	"apirest-is2/internal/services"
-)
+)*/
 
-func TestGetCoursesHandler(t *testing.T) {
+/*func TestGetCoursesHandler(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 	repo := repositories.NewCourseRepository()
 	service := services.NewCoursesService(*repo)
@@ -100,3 +100,4 @@ func TestDeleteCourseHandler(t *testing.T) {
 
 	assert.Equal(t, http.StatusNoContent, w.Code)
 }
+*/

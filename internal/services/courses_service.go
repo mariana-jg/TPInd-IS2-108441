@@ -14,8 +14,13 @@ func NewCoursesService(repository repositories.CourseRepository) *CoursesService
 	return &CoursesService{repository}
 }
 
-func (s *CoursesService) GetCourses() []models.Course {
-	return s.repository.GetCourses()
+func (s *CoursesService) GetCourses() ([]models.Course, error) {
+	//return s.repository.GetCourses()
+	courses, err := s.repository.GetCourses()
+	if err != nil {
+		return nil, err
+	}
+	return courses, nil
 }
 
 func (s *CoursesService) GetCourse(id int) (models.Course, error) {

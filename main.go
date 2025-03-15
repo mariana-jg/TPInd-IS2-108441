@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"apirest-is2/internal/database"
 	"apirest-is2/internal/handlers"
 	"apirest-is2/internal/repositories"
 	"apirest-is2/internal/services"
@@ -42,10 +43,21 @@ func main() {
 
 	logger.InitLogger()
 
+	database.InitDB()
+	defer database.DB.Close()
+
 	router := gin.Default()
 
-	courseRepository := repositories.NewCourseRepository()
+	courseRepository, err := repositories.NewCourseRepository()
+	if err != nil {
+		log.Fatalf("Failed to initialize database: %v", err)
+	}
 	courseService := services.NewCoursesService(*courseRepository)
+
+	if err := repositories.RunMigrations(courseRepository.DB()); err != nil {
+		log.Fatalf("Migration failed: %v", err)
+	}
+
 	courseHandler := handlers.NewCourseHandler(*courseService)
 	courses := router.Group("/courses")
 	{

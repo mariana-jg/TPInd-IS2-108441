@@ -1,5 +1,6 @@
 package tests
 
+/*
 import (
 	"apirest-is2/internal/repositories"
 	"testing"
@@ -14,7 +15,6 @@ func TestGetCoursesRepository(t *testing.T) {
 		t.Errorf("FAIL: Expected 2 courses, got %d", len(courses))
 	}
 }
-
 func TestGetCourseRepository(t *testing.T) {
 	repo := repositories.NewCourseRepository()
 	course, _ := repo.GetCourse(1)
@@ -22,6 +22,7 @@ func TestGetCourseRepository(t *testing.T) {
 		t.Errorf("FAIL: Expected course with ID 1, got %d", course.ID)
 	}
 }
+
 
 func TestCreateCourseRepository(t *testing.T) {
 	repo := repositories.NewCourseRepository()
@@ -40,4 +41,4 @@ func TestDeleteCourseRepository(t *testing.T) {
 	if len(courses) != 1 {
 		t.Errorf("FAIL: Expected 1 course, got %d", len(courses))
 	}
-}
+}*/

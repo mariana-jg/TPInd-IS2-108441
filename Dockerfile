@@ -9,7 +9,7 @@ RUN go mod tidy
 COPY . .
 
 RUN go fmt ./...
-RUN go build -o /app/main ./cmd/main.go
+RUN go build -o /app/main ./main.go
 
 FROM gcr.io/distroless/base-debian12 AS final
 

@@ -10,9 +10,9 @@
 ### User-guides
 ### Cómo construir la imagen de Docker.
 
-  ```docker build -t [NOMBRE]```
+  ```docker build -t [NOMBRE] .```
   
-  ```docker run -p 8080:8080 [NOMBRE]```
+  ```docker run --rm -p 8080:8080     -e ENVIRONMENT=production     -e HOST=0.0.0.0     -e PORT=8080     [NOMBRE]```
 
   Hasta setear variables de entorno.
 

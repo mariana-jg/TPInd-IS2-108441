@@ -6,16 +6,22 @@ import (
 	"errors"
 )
 
-type CoursesService struct {
-	repository repositories.CourseRepository
+type CoursesServiceInterface interface {
+	GetCourses() ([]models.Course, error)
+	GetCourse(id int) (models.Course, error)
+	CreateCourse(course models.Course) (models.Course, error)
+	DeleteCourse(id int) error
 }
 
-func NewCoursesService(repository repositories.CourseRepository) *CoursesService {
+type CoursesService struct {
+	repository repositories.CoursesRepositoryInterface
+}
+
+func NewCoursesService(repository repositories.CoursesRepositoryInterface) *CoursesService {
 	return &CoursesService{repository}
 }
 
 func (s *CoursesService) GetCourses() ([]models.Course, error) {
-	//return s.repository.GetCourses()
 	courses, err := s.repository.GetCourses()
 	if err != nil {
 		return nil, err

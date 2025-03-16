@@ -11,6 +11,13 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+type CoursesRepositoryInterface interface {
+	GetCourses() ([]models.Course, error)
+	GetCourse(id int) (models.Course, error)
+	CreateCourse(course models.Course) (models.Course, error)
+	DeleteCourse(id int) error
+}
+
 type CourseRepository struct {
 	db *pgxpool.Pool
 }

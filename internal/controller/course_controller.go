@@ -12,11 +12,11 @@ import (
 )
 
 type CourseHandler struct {
-	CourseService services.CoursesService
+	CourseService services.CoursesServiceInterface
 	Logger        *logrus.Logger
 }
 
-func NewCourseHandler(service services.CoursesService) *CourseHandler {
+func NewCourseHandler(service services.CoursesServiceInterface) *CourseHandler {
 	return &CourseHandler{
 		CourseService: service,
 		Logger:        logger.Logger,

@@ -2,7 +2,6 @@ package services
 
 import (
 	"apirest-is2/internal/models"
-	"errors"
 )
 
 type MockCourseService struct {
@@ -30,7 +29,7 @@ func (m *MockCourseService) GetCourse(id int) (models.Course, error) {
 			return course, nil
 		}
 	}
-	return models.Course{}, errors.New("course not found")
+	return models.Course{}, &CourseNotFoundError{ID: id}
 }
 
 func (m *MockCourseService) CreateCourse(course models.Course) (models.Course, error) {
@@ -46,5 +45,5 @@ func (m *MockCourseService) DeleteCourse(id int) error {
 			return nil
 		}
 	}
-	return errors.New("course not found")
+	return &CourseNotFoundError{ID: id}
 }

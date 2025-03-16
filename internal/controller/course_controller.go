@@ -1,4 +1,4 @@
-package handlers
+package controller
 
 import (
 	"apirest-is2/internal/models"

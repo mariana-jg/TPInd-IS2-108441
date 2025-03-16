@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
+	"apirest-is2/internal/controller"
 	"apirest-is2/internal/database"
-	"apirest-is2/internal/handlers"
 	"apirest-is2/internal/repositories"
 	"apirest-is2/internal/services"
 	"apirest-is2/logger"
@@ -58,7 +58,7 @@ func main() {
 		log.Fatalf("Migration failed: %v", err)
 	}
 
-	courseHandler := handlers.NewCourseHandler(*courseService)
+	courseHandler := controller.NewCourseHandler(*courseService)
 	courses := router.Group("/courses")
 	{
 		courses.GET("", courseHandler.GetCoursesHandler)

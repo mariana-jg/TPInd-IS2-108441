@@ -1,0 +1,3 @@
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-16T00:10:26Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-16T00:10:34Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-16T00:11:14Z"}

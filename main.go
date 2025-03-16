@@ -52,13 +52,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to initialize database: %v", err)
 	}
-	courseService := services.NewCoursesService(*courseRepository)
+	courseService := services.NewCoursesService(courseRepository)
 
 	if err := repositories.RunMigrations(courseRepository.DB()); err != nil {
 		log.Fatalf("Migration failed: %v", err)
 	}
 
-	courseHandler := controller.NewCourseHandler(*courseService)
+	courseHandler := controller.NewCourseHandler(courseService)
 	courses := router.Group("/courses")
 	{
 		courses.GET("", courseHandler.GetCoursesHandler)

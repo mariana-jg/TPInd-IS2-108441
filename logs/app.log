@@ -5,3 +5,8 @@
 {"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-16T14:11:10Z"}
 {"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-16T14:11:15Z"}
 {"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-16T14:11:35Z"}
+{"error":"invalid character 'c' looking for beginning of object key string","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-16T14:16:32Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-16T14:16:42Z"}
+{"error":"invalid character 'c' looking for beginning of object key string","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-16T14:16:54Z"}
+{"error":"invalid character 'c' looking for beginning of object key string","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-16T14:16:55Z"}
+{"id":999,"level":"error","method":"GET","msg":"Course not found","path":"/courses/999","status":404,"time":"2025-03-16T14:17:15Z"}

@@ -2,7 +2,6 @@ package repositories
 
 import (
 	"apirest-is2/internal/models"
-	"errors"
 )
 
 type MockCourseRepository struct {
@@ -30,7 +29,7 @@ func (m *MockCourseRepository) GetCourse(id int) (models.Course, error) {
 			return course, nil
 		}
 	}
-	return models.Course{}, errors.New("course not found")
+	return models.Course{}, &CourseNotFoundError{ID: id}
 }
 
 func (m *MockCourseRepository) CreateCourse(course models.Course) (models.Course, error) {
@@ -46,5 +45,5 @@ func (m *MockCourseRepository) DeleteCourse(id int) error {
 			return nil
 		}
 	}
-	return errors.New("course not found")
+	return &CourseNotFoundError{ID: id}
 }

@@ -4,7 +4,6 @@ import (
 	"apirest-is2/internal/database"
 	"apirest-is2/internal/models"
 	"context"
-	"errors"
 	"fmt"
 	"os"
 
@@ -21,8 +20,6 @@ type CoursesRepositoryInterface interface {
 type CourseRepository struct {
 	db *pgxpool.Pool
 }
-
-var ErrCourseNotFound = errors.New("course not found")
 
 func NewCourseRepository() (*CourseRepository, error) {
 	databaseUrl := fmt.Sprintf("postgres://%s:%s@%s:%s/%s",
@@ -72,7 +69,7 @@ func (r *CourseRepository) GetCourse(id int) (models.Course, error) {
 		Scan(&course.ID, &course.Title, &course.Description)
 
 	if err != nil {
-		return models.Course{}, ErrCourseNotFound
+		return models.Course{}, &CourseNotFoundError{ID: id}
 	}
 	return course, nil
 }
@@ -99,7 +96,7 @@ func (r *CourseRepository) DeleteCourse(id int) error {
 
 	rowsAffected := result.RowsAffected()
 	if rowsAffected == 0 {
-		return ErrCourseNotFound
+		return &CourseNotFoundError{ID: id}
 	}
 	return nil
 }

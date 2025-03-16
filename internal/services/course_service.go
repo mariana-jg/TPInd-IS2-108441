@@ -3,7 +3,6 @@ package services
 import (
 	"apirest-is2/internal/models"
 	"apirest-is2/internal/repositories"
-	"errors"
 )
 
 type CoursesServiceInterface interface {
@@ -39,7 +38,7 @@ func (s *CoursesService) GetCourse(id int) (models.Course, error) {
 
 func (s *CoursesService) CreateCourse(course models.Course) (models.Course, error) {
 	if course.Title == "" || course.Description == "" {
-		return models.Course{}, errors.New("title and description are required")
+		return models.Course{}, &CourseIncompleteError{Message: "Title and Description are required"}
 	}
 
 	createdCourse, err := s.repository.CreateCourse(course)

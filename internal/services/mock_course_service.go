@@ -4,6 +4,9 @@ import (
 	"apirest-is2/internal/models"
 )
 
+// MockCourseService is an implementation of the CoursesServiceInterface
+// that uses mock data to simulate the work of the database to test the application
+
 type MockCourseService struct {
 	Courses []models.Course
 }

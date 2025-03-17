@@ -1,3 +1,4 @@
+// Package logger contains the logger configuration
 package logger
 
 import (
@@ -8,6 +9,7 @@ import (
 
 var Logger = logrus.New()
 
+// InitLogger initializes the logger
 func InitLogger() {
 
 	logFile, err := os.OpenFile("logs/app.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)

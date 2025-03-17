@@ -1,3 +1,6 @@
+// Package controller has the functions that are called by the routes,
+// they are the ones that interact with the services and return the response to the client.
+// The functions in this package are the ones that are tested in the main_test.go file.
 package controller
 
 import (
@@ -11,11 +14,14 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+// CourseHandler is the struct that contains the services to interact with the database
+// and the logger to log the requests
 type CourseHandler struct {
 	CourseService services.CoursesServiceInterface
 	Logger        *logrus.Logger
 }
 
+// NewCourseHandler creates a new CourseHandler with the specified services
 func NewCourseHandler(service services.CoursesServiceInterface) *CourseHandler {
 	return &CourseHandler{
 		CourseService: service,
@@ -23,6 +29,7 @@ func NewCourseHandler(service services.CoursesServiceInterface) *CourseHandler {
 	}
 }
 
+// DeleteCourseHandler is the function that deletes a course from the database
 func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 	if error != nil {
@@ -92,6 +99,7 @@ func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 
 }
 
+// GetCourseHandler is the function that gets a course from the database
 func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 
@@ -163,6 +171,7 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 
 }
 
+// GetCoursesHandler is the function that gets all the courses from the database
 func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 	courses, error := h.CourseService.GetCourses()
 
@@ -196,6 +205,7 @@ func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 	})
 }
 
+// CreateCourseHandler is the function that creates a course in the database
 func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 	var course models.Course
 

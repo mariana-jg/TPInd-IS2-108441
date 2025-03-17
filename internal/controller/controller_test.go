@@ -15,6 +15,7 @@ import (
 	"apirest-is2/internal/services"
 )
 
+// setupTestRouter creates a gin.Engine instance with the specified handler
 func setupTestRouter(handler *controller.CourseHandler) *gin.Engine {
 	gin.SetMode(gin.TestMode)
 	router := gin.Default()
@@ -30,6 +31,7 @@ func setupTestRouter(handler *controller.CourseHandler) *gin.Engine {
 	return router
 }
 
+// TestGetCoursesController verifies that the GET /courses endpoint returns a 200 status code
 func TestGetCoursesController(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)
@@ -42,6 +44,8 @@ func TestGetCoursesController(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 }
 
+// TestGetCourseHandlerOK verifies that the GET /courses/:id endpoint returns a 200 status code
+// when the course exists
 func TestGetCourseHandlerOK(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)
@@ -54,6 +58,8 @@ func TestGetCourseHandlerOK(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 }
 
+// TestGetCourseHandlerNotFound verifies that the GET /courses/:id endpoint returns a 404 status code
+// when the course does not exist
 func TestGetCourseHandlerNotFound(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)
@@ -66,6 +72,8 @@ func TestGetCourseHandlerNotFound(t *testing.T) {
 	assert.Equal(t, http.StatusNotFound, w.Code)
 }
 
+// TestCreateCourseHandlerOK verifies that the POST /courses endpoint returns a 201 status code
+// when the course is created successfully
 func TestCreateCourseHandlerOK(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)
@@ -86,6 +94,8 @@ func TestCreateCourseHandlerOK(t *testing.T) {
 	assert.Equal(t, http.StatusCreated, w.Code)
 }
 
+// TestCreateCourseHandlerDescriptionError verifies that the POST /courses endpoint returns a 400 status code
+// when the course description is too short
 func TestCreateCourseHandlerDescriptionError(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)
@@ -106,6 +116,8 @@ func TestCreateCourseHandlerDescriptionError(t *testing.T) {
 	assert.Equal(t, http.StatusBadRequest, w.Code)
 }
 
+// TestCreateCourseHandlerTitleError verifies that the POST /courses endpoint returns a 400 status code
+// when the course title is empty
 func TestCreateCourseHandlerBadRequest(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)
@@ -121,6 +133,8 @@ func TestCreateCourseHandlerBadRequest(t *testing.T) {
 	assert.Equal(t, http.StatusBadRequest, w.Code)
 }
 
+// TestDeleteCourseHandlerOK verifies that the DELETE /courses/:id endpoint returns a 204 status code
+// when the course is deleted successfully
 func TestDeleteCourseHandlerOK(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)
@@ -133,6 +147,8 @@ func TestDeleteCourseHandlerOK(t *testing.T) {
 	assert.Equal(t, http.StatusNoContent, w.Code)
 }
 
+// TestDeleteCourseHandlerNotFound verifies that the DELETE /courses/:id endpoint returns a 404 status code
+// when the course does not exist
 func TestDeleteCourseHandlerNotFound(t *testing.T) {
 	mockService := services.NewMockCourseService()
 	handler := controller.NewCourseHandler(mockService)

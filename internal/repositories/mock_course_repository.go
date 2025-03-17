@@ -1,8 +1,12 @@
+// Package repositories contains the methods that interact with the database
 package repositories
 
 import (
 	"apirest-is2/internal/models"
 )
+
+// MockCourseRepository is an implementation of the CoursesRepositoryInterface
+// that uses mock data to simulate the database to test the application
 
 type MockCourseRepository struct {
 	Courses []models.Course

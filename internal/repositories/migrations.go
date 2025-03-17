@@ -1,3 +1,4 @@
+// Package repositories contains the methods that interact with the database
 package repositories
 
 import (
@@ -7,6 +8,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+// RunMigrations creates the table if it does not exist
 func RunMigrations(db *pgxpool.Pool) error {
 	_, err := db.Exec(context.Background(), `
         CREATE TABLE IF NOT EXISTS courses (

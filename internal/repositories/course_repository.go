@@ -1,3 +1,4 @@
+// Package repositories contains the methods that interact with the database
 package repositories
 
 import (
@@ -10,6 +11,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+// CoursesRepositoryInterface is the interface that defines the methods that interact with the database
 type CoursesRepositoryInterface interface {
 	GetCourses() ([]models.Course, error)
 	GetCourse(id int) (models.Course, error)
@@ -17,10 +19,12 @@ type CoursesRepositoryInterface interface {
 	DeleteCourse(id int) error
 }
 
+// CourseRepository is the struct that contains the database connection
 type CourseRepository struct {
 	db *pgxpool.Pool
 }
 
+// NewCourseRepository creates a new CourseRepository with the database connection
 func NewCourseRepository() (*CourseRepository, error) {
 	databaseUrl := fmt.Sprintf("postgres://%s:%s@%s:%s/%s",
 		os.Getenv("DATABASE_USER"),
@@ -37,10 +41,12 @@ func NewCourseRepository() (*CourseRepository, error) {
 	return &CourseRepository{db: pool}, nil
 }
 
+// DB returns the database connection
 func (r *CourseRepository) DB() *pgxpool.Pool {
 	return r.db
 }
 
+// GetCourses returns all the courses from the database
 func (r *CourseRepository) GetCourses() ([]models.Course, error) {
 	rows, err := database.DB.Query(context.Background(), "SELECT id, title, description FROM courses")
 	if err != nil {
@@ -62,6 +68,7 @@ func (r *CourseRepository) GetCourses() ([]models.Course, error) {
 
 }
 
+// GetCourse returns a course from the database
 func (r *CourseRepository) GetCourse(id int) (models.Course, error) {
 	var course models.Course
 	err := database.DB.QueryRow(context.Background(),
@@ -74,6 +81,7 @@ func (r *CourseRepository) GetCourse(id int) (models.Course, error) {
 	return course, nil
 }
 
+// CreateCourse creates a course in the database
 func (r *CourseRepository) CreateCourse(course models.Course) (models.Course, error) {
 	err := database.DB.QueryRow(context.Background(),
 		"INSERT INTO courses (title, description) VALUES ($1, $2) RETURNING id",
@@ -86,6 +94,7 @@ func (r *CourseRepository) CreateCourse(course models.Course) (models.Course, er
 	return course, nil
 }
 
+// DeleteCourse deletes a course from the database
 func (r *CourseRepository) DeleteCourse(id int) error {
 	result, err := database.DB.Exec(context.Background(),
 		"DELETE FROM courses WHERE id = $1", id)

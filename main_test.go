@@ -1,3 +1,5 @@
+// Package main contains the main function that starts the application
+// and initializes the database and the routes
 package main
 
 import (
@@ -11,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// getPort returns the port from the environment variable or 8080 if not set
 func getPort() string {
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -19,6 +22,7 @@ func getPort() string {
 	return port
 }
 
+// TestEndToEndOK tests the end-to-end flow of creating, getting and deleting a course
 func TestEndToEndOK(t *testing.T) {
 
 	url := "http://localhost:" + getPort() + "/courses"
@@ -85,6 +89,8 @@ func TestEndToEndOK(t *testing.T) {
 	})
 }
 
+// TestEndToEndErrors tests the end-to-end flow of creating, getting and deleting a course with errors
+// It tests the error handling of the application
 func TestEndToEndErrors(t *testing.T) {
 
 	url := "http://localhost:" + getPort() + "/courses"

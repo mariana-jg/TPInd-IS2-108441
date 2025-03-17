@@ -1,3 +1,5 @@
+// Package main contains the main function that starts the application
+// and initializes the database and the routes
 package main
 
 import (

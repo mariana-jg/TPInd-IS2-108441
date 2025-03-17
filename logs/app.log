@@ -1,0 +1,98 @@
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-16T23:58:38Z"}
+{"error":"EOF","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-16T23:58:59Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-16T23:59:19Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T00:01:50Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:27:10Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:27:10Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/1","status":204,"time":"2025-03-17T21:27:10Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:35:42Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:35:42Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/1","status":204,"time":"2025-03-17T21:35:42Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:35:46Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:35:46Z"}
+{"id":1,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T21:35:46Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:35:50Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:35:50Z"}
+{"id":1,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T21:35:50Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:36:06Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:36:06Z"}
+{"id":1,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T21:36:06Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:38:47Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:38:47Z"}
+{"id":1,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T21:38:47Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:40:56Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:40:56Z"}
+{"id":1,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T21:40:56Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:44:03Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:44:03Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/1","status":204,"time":"2025-03-17T21:44:03Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:45:24Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:45:24Z"}
+{"id":1,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T21:45:24Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:54:07Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T21:54:07Z"}
+{"id":99999,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/99999","status":404,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T21:54:07Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T21:54:07Z"}
+{"id":0,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T21:54:07Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T21:54:07Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:00:37Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T22:00:37Z"}
+{"id":0,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T22:00:37Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T22:00:37Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:02:22Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T22:02:44Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:04:36Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T22:04:36Z"}
+{"id":0,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T22:04:36Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T22:04:36Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T22:05:49Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:07:02Z"}
+{"id":0,"level":"error","method":"GET","msg":"Course not found","path":"/courses/0","status":404,"time":"2025-03-17T22:07:02Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:09:00Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses","status":200,"time":"2025-03-17T22:09:06Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:14:42Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses/1","status":200,"time":"2025-03-17T22:14:42Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:18:31Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses/2","status":200,"time":"2025-03-17T22:18:31Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:24:13Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses/1","status":200,"time":"2025-03-17T22:24:13Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/1","status":204,"time":"2025-03-17T22:24:13Z"}
+{"id":1,"level":"error","method":"GET","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T22:24:13Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:32:28Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses/2","status":200,"time":"2025-03-17T22:32:28Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/2","status":204,"time":"2025-03-17T22:32:28Z"}
+{"id":2,"level":"error","method":"GET","msg":"Course not found","path":"/courses/2","status":404,"time":"2025-03-17T22:32:28Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:43:37Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses/1","status":200,"time":"2025-03-17T22:43:37Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/1","status":204,"time":"2025-03-17T22:43:37Z"}
+{"id":1,"level":"error","method":"GET","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T22:43:37Z"}
+{"error":"Key: 'Course.Title' Error:Field validation for 'Title' failed on the 'required' tag\nKey: 'Course.Description' Error:Field validation for 'Description' failed on the 'required' tag","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-17T22:43:37Z"}
+{"id":9999,"level":"error","method":"GET","msg":"Course not found","path":"/courses/9999","status":404,"time":"2025-03-17T22:43:37Z"}
+{"id":9999,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/9999","status":404,"time":"2025-03-17T22:43:37Z"}
+{"level":"warning","method":"DELETE","msg":"ID is not a valid number","path":"/courses/invalid","status":400,"time":"2025-03-17T22:43:37Z"}
+{"error":"unexpected EOF","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-17T22:43:37Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:45:11Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses/2","status":200,"time":"2025-03-17T22:45:11Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/2","status":204,"time":"2025-03-17T22:45:11Z"}
+{"id":2,"level":"error","method":"GET","msg":"Course not found","path":"/courses/2","status":404,"time":"2025-03-17T22:45:11Z"}
+{"error":"Key: 'Course.Title' Error:Field validation for 'Title' failed on the 'required' tag\nKey: 'Course.Description' Error:Field validation for 'Description' failed on the 'required' tag","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-17T22:45:11Z"}
+{"id":9999,"level":"error","method":"GET","msg":"Course not found","path":"/courses/9999","status":404,"time":"2025-03-17T22:45:11Z"}
+{"id":9999,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/9999","status":404,"time":"2025-03-17T22:45:11Z"}
+{"level":"warning","method":"DELETE","msg":"ID is not a valid number","path":"/courses/invalid","status":400,"time":"2025-03-17T22:45:11Z"}
+{"error":"unexpected EOF","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-17T22:45:11Z"}
+{"level":"info","method":"POST","msg":"Course created successfully","path":"/courses","status":201,"time":"2025-03-17T22:57:47Z"}
+{"level":"info","method":"GET","msg":"Request successful","path":"/courses/1","status":200,"time":"2025-03-17T22:57:47Z"}
+{"level":"warning","method":"DELETE","msg":"No Content response","path":"/courses/1","status":204,"time":"2025-03-17T22:57:47Z"}
+{"id":1,"level":"error","method":"GET","msg":"Course not found","path":"/courses/1","status":404,"time":"2025-03-17T22:57:47Z"}
+{"error":"Key: 'Course.Title' Error:Field validation for 'Title' failed on the 'required' tag\nKey: 'Course.Description' Error:Field validation for 'Description' failed on the 'required' tag","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-17T22:57:47Z"}
+{"id":9999,"level":"error","method":"GET","msg":"Course not found","path":"/courses/9999","status":404,"time":"2025-03-17T22:57:47Z"}
+{"id":9999,"level":"error","method":"DELETE","msg":"Course not found","path":"/courses/9999","status":404,"time":"2025-03-17T22:57:47Z"}
+{"level":"warning","method":"DELETE","msg":"ID is not a valid number","path":"/courses/invalid","status":400,"time":"2025-03-17T22:57:47Z"}
+{"error":"unexpected EOF","level":"warning","method":"POST","msg":"Bad Request received","path":"/courses","status":400,"time":"2025-03-17T22:57:47Z"}

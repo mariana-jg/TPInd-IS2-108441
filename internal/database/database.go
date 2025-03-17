@@ -1,3 +1,4 @@
+// Package database has the functions that interact with the database.
 package database
 
 import (
@@ -11,6 +12,7 @@ import (
 
 var DB *pgxpool.Pool
 
+// InitDB initializes the connection to the database
 func InitDB() {
 	dbURL := fmt.Sprintf("postgresql://%s:%s@%s:%s/%s",
 		os.Getenv("DATABASE_USER"),

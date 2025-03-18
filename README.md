@@ -8,10 +8,10 @@
 1. [Introducción](#introducción)
 2. [Desafíos](#desafíos)
 3. [Pre-requisitos](#pre-requisitos)
-4. [User-guides](#user-guides)
+4. [Cómo levantar el servicio y la base de datos utilizando Docker Compose](#cómo-levantar-el-servicio-y-la-base-de-datos-utilizando-docker-compose)
+5. [User-guides](#user-guides)
    1. [Cómo probar la API](#cómo-probar-la-api-con-el-servicio-activo)
    2. [Cómo correr los tests End to End](#cómo-correr-los-tests-end-to-end)
-5. [Cómo levantar el servicio y la base de datos utilizando Docker Compose](#cómo-levantar-el-servicio-y-la-base-de-datos-utilizando-docker-compose)
 
 ### Introducción
 

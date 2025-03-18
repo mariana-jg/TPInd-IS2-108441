@@ -54,6 +54,22 @@ func TestEndToEndOK(t *testing.T) {
 		assert.NotZero(t, createdCourseID, "Created course ID should not be zero")
 	})
 
+	t.Run("Get All Courses", func(t *testing.T) {
+		resp, err := http.Get(url)
+		assert.NoError(t, err)
+		assert.Equal(t, http.StatusOK, resp.StatusCode)
+
+		var result struct {
+			Data []struct {
+				ID int `json:"id"`
+			} `json:"data"`
+		}
+
+		err = json.NewDecoder(resp.Body).Decode(&result)
+		assert.NoError(t, err)
+		assert.Greater(t, len(result.Data), 0, "There should be at least one course")
+	})
+
 	t.Run("Get Specific Course", func(t *testing.T) {
 		url := fmt.Sprintf("%s/%d", url, createdCourseID)
 		resp, err := http.Get(url)
@@ -79,6 +95,25 @@ func TestEndToEndOK(t *testing.T) {
 
 		assert.NoError(t, err)
 		assert.Equal(t, http.StatusNoContent, resp.StatusCode)
+	})
+
+	t.Run("Get All Courses After Deletion", func(t *testing.T) {
+		resp, err := http.Get(url)
+		assert.NoError(t, err)
+		assert.Equal(t, http.StatusOK, resp.StatusCode)
+
+		var result struct {
+			Data []struct {
+				ID int `json:"id"`
+			} `json:"data"`
+		}
+
+		err = json.NewDecoder(resp.Body).Decode(&result)
+		assert.NoError(t, err)
+
+		for _, course := range result.Data {
+			assert.NotEqual(t, createdCourseID, course.ID, "Deleted course should not be in the list")
+		}
 	})
 
 	t.Run("Get Deleted Course", func(t *testing.T) {

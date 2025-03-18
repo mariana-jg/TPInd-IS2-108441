@@ -231,6 +231,24 @@ func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 	createdCourse, error := h.CourseService.CreateCourse(course)
 	if error != nil {
 
+		if _, ok := error.(*services.CourseDescriptionError); ok {
+
+			h.Logger.WithFields(logrus.Fields{
+				"method": "POST",
+				"status": http.StatusBadRequest,
+				"path":   c.Request.URL.Path,
+			}).Error("Description error")
+
+			errorResponse := models.NewRFCError(
+				http.StatusBadRequest,
+				"Description error",
+				"Description must be between 50 and 255 characters",
+				c.Request.URL.Path,
+			)
+			c.IndentedJSON(http.StatusNotFound, errorResponse)
+			return
+		}
+
 		h.Logger.WithFields(logrus.Fields{
 			"method": "POST",
 			"status": http.StatusInternalServerError,

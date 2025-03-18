@@ -25,6 +25,14 @@ func (e *CourseIncompleteError) Error() string {
 	return fmt.Sprintf("Course is incomplete, you need a title and a description: %s", e.Message)
 }
 
+type CourseDescriptionError struct {
+	Message string
+}
+
+func (e *CourseDescriptionError) Error() string {
+	return fmt.Sprintf("Course description must be between 50 and 255 characters: %s", e.Message)
+}
+
 // RepositoryError is the error that is returned when there is an error in the repository
 type RepositoryError struct {
 	Message string

@@ -50,6 +50,10 @@ func (s *CoursesService) CreateCourse(course models.Course) (models.Course, erro
 		return models.Course{}, &CourseIncompleteError{Message: "Title and Description are required"}
 	}
 
+	if len(course.Description) < 50 || len(course.Description) > 255 {
+		return models.Course{}, &CourseDescriptionError{Message: "Description must be between 50 and 255 characters"}
+	}
+
 	createdCourse, err := s.repository.CreateCourse(course)
 	if err != nil {
 		return models.Course{}, err

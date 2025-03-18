@@ -33,6 +33,7 @@ func NewCourseHandler(service services.CoursesServiceInterface) *CourseHandler {
 // and returns the response to the client
 func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
+
 	if error != nil {
 
 		h.Logger.WithFields(logrus.Fields{
@@ -54,6 +55,7 @@ func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 
 	error = h.CourseService.DeleteCourse(id)
 	if error != nil {
+
 		if _, ok := error.(*services.CourseNotFoundError); ok {
 
 			h.Logger.WithFields(logrus.Fields{
@@ -125,6 +127,7 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 
 	course, error := h.CourseService.GetCourse(id)
 	if error != nil {
+
 		if _, ok := error.(*services.CourseNotFoundError); ok {
 
 			h.Logger.WithFields(logrus.Fields{

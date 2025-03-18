@@ -30,6 +30,7 @@ func NewCourseHandler(service services.CoursesServiceInterface) *CourseHandler {
 }
 
 // DeleteCourseHandler is the function that deletes a course from the database
+// and returns the response to the client
 func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 	if error != nil {
@@ -100,6 +101,7 @@ func (h *CourseHandler) DeleteCourseHandler(c *gin.Context) {
 }
 
 // GetCourseHandler is the function that gets a course from the database
+// and returns the response to the client
 func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 	id, error := strconv.Atoi(c.Param("id"))
 
@@ -172,6 +174,7 @@ func (h *CourseHandler) GetCourseHandler(c *gin.Context) {
 }
 
 // GetCoursesHandler is the function that gets all the courses from the database
+// and returns the response to the client
 func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 	courses, error := h.CourseService.GetCourses()
 
@@ -206,6 +209,7 @@ func (h *CourseHandler) GetCoursesHandler(c *gin.Context) {
 }
 
 // CreateCourseHandler is the function that creates a course in the database
+// and returns the response to the client
 func (h *CourseHandler) CreateCourseHandler(c *gin.Context) {
 	var course models.Course
 

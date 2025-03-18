@@ -15,7 +15,7 @@
 
 ### Introducción
 
-Este trabajo práctico implementa una API RESTful para la gestión de cursos utilizando endpoints HTTP que permiten crear, obtener un curso en particular, obtener todos los cursos y eliminar cursos en particular.
+Este trabajo práctico implementa una API RESTful para la gestión de cursos utilizando endpoints HTTP que permiten crear, obtener, listar y eliminar cursos en particular.
 
 El desarrollo backend se realizó utilizando el lenguaje Go con el framework Gin para la gestión del router y la administración de las requests y responses HTTP. Además, para la persistencia de la información de los cursos, se utilizó PostgreSQL como base de datos.
 

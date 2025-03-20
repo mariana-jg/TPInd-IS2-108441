@@ -17,7 +17,7 @@
 
 Este trabajo práctico implementa una API RESTful para la gestión de cursos utilizando endpoints HTTP que permiten crear, obtener, listar y eliminar cursos en particular.
 
-El desarrollo backend se realizó utilizando el lenguaje Go con el framework Gin para la gestión del router y la administración de las requests y responses HTTP. Además, para la persistencia de la información de los cursos, se utilizó PostgreSQL como base de datos.
+El desarrollo backend se realizó utilizando el lenguaje Go con el framework Gin para la gestión del router y la administración de las requests y responses HTTP. Además, para la persistencia de la información de los cursos, se utilizó PostgreSQL como base de datos. Además, cuenta con el feature de loggear registrando en un archivo.
 
 El servicio completo (API + DB) se levanta utilizando el orquestador Docker Compose.
 
@@ -28,8 +28,7 @@ La arquitectura de la API sigue el patrón Repository-Service-Controller:
 
 ### Desafíos
 
-- Longitud minima y maxima de la descripcion ✅
-- Uso de Docker Compose ✅
+Definitivamente el despliegue de la base de datos y el uso de Docker Compose fue lo más desafiante, por mi parte fue la primera vez donde me encargué de añadir esas features a un proyecto y considero que, a pesar de que me resultó un poco dificil al inicio, logré el resultado esperado. Pasar de un manejo en memoria de la información al servicio de base de datos resultó un desafío de refactorización casi completa del código, más que nada del repositorio. 
 
 ### Pre-requisitos
 
@@ -60,6 +59,8 @@ Para ver los logs en ejecución
 ### User-guides
 
 #### Cómo probar la API (con el servicio activo)
+
+Reemplazar ```PORT``` por el puerto de despliegue asignado en el archivo de variables de entorno.
 
 Para crear un curso:
 

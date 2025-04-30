@@ -93,4 +93,4 @@ curl -X DELETE http://localhost:PORT/courses/id
 1. Hay que levantar el servicio primero con  ```docker-compose up --build -d```
 2. Ejecutar en la terminal ``` go test -v ```
 
-#### Fecha máxima de entrega: 21/03/2025
+#### Fecha máxima de entrega: 20/03/2025
